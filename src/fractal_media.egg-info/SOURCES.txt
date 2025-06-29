@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+src/fractal_media/__init__.py
+src/fractal_media/fractal_media.py
+src/fractal_media.egg-info/PKG-INFO
+src/fractal_media.egg-info/SOURCES.txt
+src/fractal_media.egg-info/dependency_links.txt
+src/fractal_media.egg-info/top_level.txt
+tests/test.py

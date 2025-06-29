@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: fractal_media
+Version: 0.0.1
+Summary: A package to explore fractals and apply them to diffrent media sources
+Author: Mitchell Gerrard
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Issues, https://github.com/pypa/sampleproject/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
