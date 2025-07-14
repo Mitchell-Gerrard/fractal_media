@@ -20,45 +20,8 @@ class photo_fractal:
         imag_norm = 2 * (imag - imag.min()) / (imag.max() - imag.min()) - 1
         
         return real_norm + 1j * imag_norm
-    def generate_squared_fractal(self,num_iterations=5,shift=0.1):
-        image=Image.open(self.image_path).convert("RGB")
-        img = np.array(image)
-        self.dpi=image.info['dpi']
-        height, width = img.shape[:2]
 
-        # Create coordinate grid (centered)
-        aspect_ratio = width / height
-        x = np.linspace(-aspect_ratio, aspect_ratio, width)
-        y = np.linspace(-1, 1, height)
-        X, Y = np.meshgrid(x, y)
-        Z = X + 1j * Y
-
-        # Apply complex function
-        for _ in range(num_iterations):
-            # Shift the complex plane
-            Z = Z - shift
-
-            # Apply a transformation (e.g., squaring)
-            Z = np.sqrt(Z)
-        #Z = self.normalise_complex(Z) 
-        Z_transformed = Z 
-
-        
-        X_new = ((Z_transformed.real + 1) / 2) * (width - 1)
-        Y_new = ((Z_transformed.imag + 1) / 2) * (height - 1)
-        # Convert to float32 for OpenCV
-        map_x = X_new.astype(np.float32)
-        map_y = Y_new.astype(np.float32)
-
-        # Remap image
-        remapped = cv2.remap(img, map_x, map_y, interpolation=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REFLECT)
-
-        # Show result
-        plt.imshow(remapped)
-        plt.axis('off')
-        plt.show()
-        self.fractal_image = f"Fractal generated from {self.image_path}"
-    def generate_square_root_fractal(self, num_iterations=5, shift=0.1,scale=2):
+    def generate_fractal(self, num_iterations=5, shift=0.1,scale=2):
         image=Image.open(self.image_path).convert("RGB")
         img = np.array(image)
         self.dpi=image.info['dpi']
@@ -97,44 +60,7 @@ class photo_fractal:
         plt.show()
         self.fractal_image = remapped
         self.fractal_exist=True
-    def generate_constant_fractal(self, constant, num_iterations=5):
-        # Load image
-        image=Image.open(self.image_path).convert("RGB")
-        img = np.array(image)
-        self.dpi=image.info['dpi']
-        height, width = img.shape[:2]
-        
-        # Create coordinate grid (centered)
-        x = np.linspace(-1, 1, width)
-        y = np.linspace(-1, 1, height)
-        X, Y = np.meshgrid(x, y)
-        Z = X + 1j * Y
-
-        # Apply complex function with constant
-        for _ in range(num_iterations):
-            Z = Z + constant
-            Z = self.normalise_complex(Z) 
-
-        Z_transformed = Z 
-
-        # Extract and normalize real/imag back to pixel space
-        X_new = ((Z_transformed.real - Z_transformed.real.min()) /
-                (Z_transformed.real.max() - Z_transformed.real.min())) * (width - 1)
-        Y_new = ((Z_transformed.imag - Z_transformed.imag.min()) /
-                (Z_transformed.imag.max() - Z_transformed.imag.min())) * (height - 1)
-
-        # Convert to float32 for OpenCV
-        map_x = X_new.astype(np.float32)
-        map_y = Y_new.astype(np.float32)
-
-        # Remap image
-        remapped = cv2.remap(img, map_x, map_y, interpolation=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
-        self.fractal_image = remapped
-        # Show result
-        plt.imshow(self.fractal_image)
-        plt.axis('off')
-        plt.show()
-        self.fractal_exist=True
+    
         
         
     def save_fractal(self, output_path,dpi=300):
