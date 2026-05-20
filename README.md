@@ -8,6 +8,12 @@ A Python package that applies fractal mathematics to warp images and videos usin
 
 The core idea is to treat each pixel's coordinates as a point on the complex plane, iteratively apply a transformation (Z → Z² with a shift), then use the resulting coordinates to remap pixels in the original media. This produces a warped, fractal-distorted version of the input.
 
+**Input**
+![Input image](tests/test_image.jpg)
+
+**Output**
+![Fractal output](tests/test_fractal.jpg)
+
 ---
 
 ## Installation
