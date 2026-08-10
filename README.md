@@ -18,11 +18,7 @@ The core idea is to treat each pixel's coordinates as a point on the complex pla
 
 ## Installation
 
-```bash
-pip install fractal-media
-```
-
-Or from source:
+from source:
 
 ```bash
 git clone https://github.com/Mitchell-Gerrard/fractal_media
